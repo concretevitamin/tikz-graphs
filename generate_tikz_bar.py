@@ -4,8 +4,10 @@ from math import pow, log10, floor, ceil
 import argparse
 import re
 
-pattern_types_tikz = ['north east lines', 'north west lines', 'grid', 'crosshatch', 'dots', 'crosshatch dots']
-pattern_colors_tikz = ['red', 'cyan', 'green', 'black', 'gray', 'brown']
+pattern_types_tikz = ['grid', 'crosshatch', 'crosshatch dots', 'north west lines', 'north east lines', 'grid', 'dots']
+# pattern_types_tikz = ['north east lines', 'north west lines', 'grid', 'crosshatch', 'dots', 'crosshatch dots']
+pattern_colors_tikz = ['red', 'violet', 'cyan', 'green', 'black', 'gray', 'brown']
+# pattern_colors_tikz = ['red', 'cyan', 'green', 'black', 'gray', 'brown']
 patterns_tikz = zip(pattern_types_tikz, pattern_colors_tikz)
 
 def split(string):
