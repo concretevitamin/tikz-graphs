@@ -72,7 +72,7 @@ def generate_tikz(args):
   if yscale is None:
     yscale = 0.1
 
-  header_tikz = '\\begin{tikzpicture}[xscale=%.2f,yscale=%.2f]\n\n' % (xscale, yscale)
+  header_tikz = '\\begin{tikzpicture}[xscale=%.3f,yscale=%.3f]\n\n' % (xscale, yscale)
   header_tikz += '  \\draw[preaction={fill=black,opacity=.5,transform canvas={xshift=3,yshift=-3}},black][fill=white]' \
                  ' (0,0) rectangle (100, 100);\n\n'
 
