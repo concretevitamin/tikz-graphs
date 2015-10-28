@@ -115,12 +115,12 @@ def generate_tikz(args):
       ymark = pow(10, power)
       mark = (power - ymin) * step
       gridlines_tikz += '  \\draw[dashed, gray] (-1, %.2f) -- (101, %.2f);\n' % (mark, mark)
-      ymarks_tikz += '  \\draw[thick, black] (-6, %.2f) node[align=right] {%s};\n' % (mark, intify(ymark))
+      ymarks_tikz += '  \\draw[thick, black] (-6, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
     gridlines_tikz += '\n'
   else:
     for mark in [25.0, 50.0, 75.0]:
       ymark = float(ymin + (mark * (ymax - ymin) / 100.0))
-      ymarks_tikz += '  \\draw[thick, black] (-6, %.2f) node[align=right] {%s};\n' % (mark, intify(ymark))
+      ymarks_tikz += '  \\draw[thick, black] (-6, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
 
   ymarks_tikz += '\n'
 
