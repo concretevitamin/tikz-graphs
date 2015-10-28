@@ -148,7 +148,7 @@ def generate_tikz(args):
   xlabel_offsets = [width + x * (bar_grp_width + width) + 0.5 * bar_grp_width for x in range(0, len(xlabels))]
   xlabels_tikz = ''
   for xlabel in zip(xlabel_offsets, xlabels):
-    xlabels_tikz += '  \draw[thick, black] (%.2f, -5) node {%s};\n' % xlabel
+    xlabels_tikz += '  \draw[thick, black] (%.2f, -9) node {%s};\n' % xlabel
 
   xlabels_tikz += '\n'
 
