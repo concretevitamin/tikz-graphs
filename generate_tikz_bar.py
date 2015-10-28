@@ -4,9 +4,9 @@ from math import pow, log10, floor, ceil
 import argparse
 import re
 
-pattern_types_tikz = ['grid', 'crosshatch', 'crosshatch dots', 'north west lines', 'north east lines', 'grid', 'dots']
+pattern_types_tikz = ['grid', 'crosshatch', 'north east lines', 'crosshatch dots', 'north west lines',  'grid', 'dots']
 # pattern_types_tikz = ['north east lines', 'north west lines', 'grid', 'crosshatch', 'dots', 'crosshatch dots']
-pattern_colors_tikz = ['red', 'violet', 'cyan', 'green', 'black', 'gray', 'brown']
+pattern_colors_tikz = ['red', 'violet', 'black', 'cyan', 'green', 'gray', 'brown']
 # pattern_colors_tikz = ['red', 'cyan', 'green', 'black', 'gray', 'brown']
 patterns_tikz = zip(pattern_types_tikz, pattern_colors_tikz)
 
@@ -115,12 +115,12 @@ def generate_tikz(args):
       ymark = pow(10, power)
       mark = (power - ymin) * step
       gridlines_tikz += '  \\draw[dashed, gray] (-1, %.2f) -- (101, %.2f);\n' % (mark, mark)
-      ymarks_tikz += '  \\draw[thick, black] (-6, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
+      ymarks_tikz += '  \\draw[thick, black] (-4.2, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
     gridlines_tikz += '\n'
   else:
     for mark in [25.0, 50.0, 75.0]:
       ymark = float(ymin + (mark * (ymax - ymin) / 100.0))
-      ymarks_tikz += '  \\draw[thick, black] (-6, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
+      ymarks_tikz += '  \\draw[thick, black] (-4.2, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
 
   ymarks_tikz += '\n'
 
@@ -135,8 +135,15 @@ def generate_tikz(args):
     # Generate data for a group of bars
     bar_grp_tikz = ''
     pattern_iter = iter(patterns_tikz)
+
+    # redistribute missing bars' width to others
+    numMissingBars = sum([1 for col in row if col == 0])
+    cur_bar_off += width * numMissingBars / (len(row) - numMissingBars)
+
     for col in row:
       pattern = pattern_iter.next()
+      if col == 0:
+        continue
       bar_grp_tikz += '  \draw[thick, pattern=%s, pattern color=%s] (%.2f,0) rectangle (%.2f,%.2f);\n' % \
                       (pattern[0], pattern[1], cur_bar_off, cur_bar_off + width, col)
       cur_bar_off += width
