@@ -56,7 +56,13 @@ def intify(val):
     return int(val)
   return val
 
-def generate_tikz(args):
+def generate_tikz(args, pattern_colors_tikz, pattern_types_tikz):
+  if args.colors is not None:
+    pattern_colors_tikz = args.colors.split(',')
+  if args.patterns is not None:
+    pattern_types_tikz = args.patterns.split(',')
+  patterns_tikz = zip(pattern_types_tikz, pattern_colors_tikz)
+
   inp = open(args.data, 'r')
 
   # Get the bar labels
@@ -74,7 +80,7 @@ def generate_tikz(args):
   if yscale is None:
     yscale = 0.1
 
-  header_tikz = '\\begin{tikzpicture}[xscale=%.3f,yscale=%.3f]\n\n' % (xscale, yscale)
+  header_tikz = '\\begin{tikzpicture}[xscale=%.4f,yscale=%.4f]\n\n' % (xscale, yscale)
   header_tikz += '  \\draw[preaction={fill=black,opacity=.5,transform canvas={xshift=3,yshift=-3}},black][fill=white]' \
                  ' (0,0) rectangle (100, 100);\n\n'
 
@@ -194,8 +200,10 @@ def main():
   parser.add_argument('--yscale', type=float, help='Scale for y-axis.')
   parser.add_argument('--logscale', '-l', action='store_true', help='Set logscale for y-axis')
   parser.add_argument('--nolegend', action='store_true', help='Don\'t generate a legend.')
+  parser.add_argument('--colors', type=str, help='Comma-separated list of colors')
+  parser.add_argument('--patterns', type=str, help='Comma-separated list of patterns')
   args = parser.parse_args()
-  generate_tikz(args)
+  generate_tikz(args, pattern_colors_tikz, pattern_types_tikz)
 
 if __name__ == "__main__":
   main()
