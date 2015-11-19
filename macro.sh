@@ -9,8 +9,8 @@ python generate_tikz_bar.py \
   --ylabel "${ylabel}" \
   --ymin 0 --ymax 3 \
   --xscale 0.067 --yscale 0.042 \
-  --colors "red,violet,black,cyan,green" \
-  --patterns "grid,crosshatch,north east lines,crosshatch dots,north west lines"
+  --colors "red,brown,violet,black,cyan,green" \
+  --patterns "grid,dots,crosshatch,north east lines,crosshatch dots,north west lines"
 
 file=./macro-orkut.txt
 python generate_tikz_bar.py \

@@ -153,16 +153,18 @@ def generate_tikz(args, pattern_colors_tikz, pattern_types_tikz):
     pattern_iter = iter(patterns_tikz)
 
     # redistribute missing bars' width to others
-    numMissingBars = sum([1 for col in row if col == 0])
+    numMissingBars = 0
     cur_bar_off += width * (numMissingBars ) / (len(row) - numMissingBars)
 
     for col in row:
       pattern = pattern_iter.next()
-      if col == 0: # hacky: this means missing bar
-        continue
       print cur_bar_off,
-      bar_grp_tikz += '  \draw[thick, pattern=%s, pattern color=%s] (%.2f,0) rectangle (%.2f,%.2f);\n' % \
-                      (pattern[0], pattern[1], cur_bar_off, cur_bar_off + width, col)
+      if col != 0:        
+        bar_grp_tikz += '  \draw[thick, pattern=%s, pattern color=%s] (%.2f,0) rectangle (%.2f,%.2f);\n' % \
+                        (pattern[0], pattern[1], cur_bar_off, cur_bar_off + width, col)
+      else:
+        bar_grp_tikz += '  \\node[very thick, %s, align=center, rotate=90] at (%.2f, 10) {\small{DNF}};\n' % \
+                        (pattern[1], cur_bar_off + width / 2)
       cur_bar_off += width
     plot_data_tikz += (bar_grp_tikz + '\n')
     cur_bar_off += width
