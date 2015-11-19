@@ -1,0 +1,3 @@
+\scriptsize{\tt{Titan-C}}    \scriptsize{\tt{ZipG}} 
+\footnotesize{\tt{T-Mix}}   12.1    81.3
+\footnotesize{\tt{P-Mix}}   4.5     16.8

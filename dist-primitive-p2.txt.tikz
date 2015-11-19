@@ -1,0 +1,27 @@
+\begin{tikzpicture}[xscale=0.0430,yscale=0.0300]
+
+  \draw[preaction={fill=black,opacity=.5,transform canvas={xshift=3,yshift=-3}},black][fill=white] (0,0) rectangle (100, 100);
+
+  \draw[dashed, gray] (-1, 25) -- (101, 25);
+  \draw[dashed, gray] (-1, 50) -- (101, 50);
+  \draw[dashed, gray] (-1, 75) -- (101, 75);
+
+  \draw[thick, black] (-5.5, 25.00) node[align=right] {\footnotesize{5}};
+  \draw[thick, black] (-5.5, 50.00) node[align=right] {\footnotesize{10}};
+  \draw[thick, black] (-5.5, 75.00) node[align=right] {\footnotesize{15}};
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (11.11,0) rectangle (22.22,19.00);
+  \draw[thick, pattern=north east lines, pattern color=black] (22.22,0) rectangle (33.33,16.50);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (33.33,0) rectangle (44.44,75.50);
+
+  \draw[thick, pattern=north east lines, pattern color=black] (61.11,0) rectangle (72.22,7.00);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (72.22,0) rectangle (83.33,57.50);
+
+  \draw[thick, black] (27.78, -9) node {\footnotesize{\tt{twitter}}};
+  \draw[thick, black] (72.22, -9) node {\footnotesize{\tt{uk}}};
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (0.00, 103.5) rectangle (4.75, 109.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{Titan}}};
+  \draw[thick, pattern=north east lines, pattern color=black] (30.73, 103.5) rectangle (35.48, 109.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{Titan-C}}};
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (64.07, 103.5) rectangle (68.82, 109.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{ZipG}}};
+
+\end{tikzpicture}

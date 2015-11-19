@@ -1,0 +1,4 @@
+\scriptsize{\tt{Neo4j}}  \scriptsize{\tt{Neo4j-T}} \scriptsize{\tt{Titan}}  \scriptsize{\tt{Titan-C}}   \scriptsize{\tt{ZipG}}    
+\footnotesize{\tt{orkut}}  2.13     18.2    29.2 23.7       35.97
+\footnotesize{\tt{twitter}}  2.3    18.3    11.1  17.5      54.2
+\footnotesize{\tt{uk}}       0      0       0    2.2        24.6

@@ -1,0 +1,27 @@
+\begin{tikzpicture}[xscale=0.0430,yscale=0.0300]
+
+  \draw[preaction={fill=black,opacity=.5,transform canvas={xshift=3,yshift=-3}},black][fill=white] (0,0) rectangle (100, 100);
+
+  \draw[dashed, gray] (-1, 25) -- (101, 25);
+  \draw[dashed, gray] (-1, 50) -- (101, 50);
+  \draw[dashed, gray] (-1, 75) -- (101, 75);
+
+  \draw[thick, black] (-5.5, 25.00) node[align=right] {\footnotesize{15}};
+  \draw[thick, black] (-5.5, 50.00) node[align=right] {\footnotesize{30}};
+  \draw[thick, black] (-5.5, 75.00) node[align=right] {\footnotesize{45}};
+
+  \node (label-align) [thick, black, align=center, rotate=90] at (-13.5, 50) {{\scriptsize Throughput (KOps)}};
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (14.29,0) rectangle (28.57,41.03);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (28.57,0) rectangle (42.86,3.70);
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (57.14,0) rectangle (71.43,9.98);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (71.43,0) rectangle (85.71,0.39);
+
+  \draw[thick, black] (28.57, -9) node {\footnotesize{\tt{T-Mix}}};
+  \draw[thick, black] (71.43, -9) node {\footnotesize{\tt{S-Mix}}};
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (0.00, 103.5) rectangle (4.75, 109.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{ZipG}}};
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (47.40, 103.5) rectangle (52.15, 109.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{Titan-C}}};
+
+\end{tikzpicture}

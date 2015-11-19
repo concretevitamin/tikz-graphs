@@ -1,0 +1,38 @@
+\begin{tikzpicture}[xscale=0.0430,yscale=0.0300]
+
+  \draw[preaction={fill=black,opacity=.5,transform canvas={xshift=3,yshift=-3}},black][fill=white] (0,0) rectangle (100, 100);
+
+  \draw[dashed, gray] (-1, 25) -- (101, 25);
+  \draw[dashed, gray] (-1, 50) -- (101, 50);
+  \draw[dashed, gray] (-1, 75) -- (101, 75);
+
+  \draw[thick, black] (-5.5, 25.00) node[align=right] {\footnotesize{5}};
+  \draw[thick, black] (-5.5, 50.00) node[align=right] {\footnotesize{10}};
+  \draw[thick, black] (-5.5, 75.00) node[align=right] {\footnotesize{15}};
+
+  \draw[thick, pattern=grid, pattern color=red] (5.26,0) rectangle (10.53,82.00);
+  \draw[thick, pattern=dots, pattern color=brown] (10.53,0) rectangle (15.79,7.50);
+  \draw[thick, pattern=crosshatch, pattern color=violet] (15.79,0) rectangle (21.05,36.50);
+  \draw[thick, pattern=north east lines, pattern color=black] (21.05,0) rectangle (26.32,45.50);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (26.32,0) rectangle (31.58,33.00);
+
+  \draw[thick, pattern=grid, pattern color=red] (36.84,0) rectangle (42.11,20.50);
+  \draw[thick, pattern=dots, pattern color=brown] (42.11,0) rectangle (47.37,2.90);
+  \draw[thick, pattern=crosshatch, pattern color=violet] (47.37,0) rectangle (52.63,14.00);
+  \draw[thick, pattern=north east lines, pattern color=black] (52.63,0) rectangle (57.89,15.50);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (57.89,0) rectangle (63.16,34.50);
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (76.32,0) rectangle (81.58,2.90);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (81.58,0) rectangle (86.84,19.50);
+
+  \draw[thick, black] (18.42, -9) node {\footnotesize{\tt{orkut}}};
+  \draw[thick, black] (50.00, -9) node {\footnotesize{\tt{twitter}}};
+  \draw[thick, black] (81.58, -9) node {\footnotesize{\tt{uk}}};
+
+  \draw[thick, pattern=grid, pattern color=red] (0.00, 114.5) rectangle (4.75, 120.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{Neo4j-T}}};
+  \draw[thick, pattern=dots, pattern color=brown] (0.00, 103.5) rectangle (4.75, 109.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{Neo4j}}};
+  \draw[thick, pattern=crosshatch, pattern color=violet] (30.73, 114.5) rectangle (35.48, 120.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{Titan-C}}};
+  \draw[thick, pattern=north east lines, pattern color=black] (47.40, 103.5) rectangle (52.15, 109.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{Titan}}};
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (64.07, 114.5) rectangle (68.82, 120.5) node[midway,right=0.05,text height=6,text depth=0.1, anchor=west] {\scriptsize{\tt{ZipG}}};
+
+\end{tikzpicture}

@@ -1,0 +1,34 @@
+\begin{tikzpicture}[xscale=0.0430,yscale=0.0300]
+
+  \draw[preaction={fill=black,opacity=.5,transform canvas={xshift=3,yshift=-3}},black][fill=white] (0,0) rectangle (100, 100);
+
+  \draw[dashed, gray] (-1, 25) -- (101, 25);
+  \draw[dashed, gray] (-1, 50) -- (101, 50);
+  \draw[dashed, gray] (-1, 75) -- (101, 75);
+
+  \draw[thick, black] (-5.5, 25.00) node[align=right] {\footnotesize{55}};
+  \draw[thick, black] (-5.5, 50.00) node[align=right] {\footnotesize{110}};
+  \draw[thick, black] (-5.5, 75.00) node[align=right] {\footnotesize{165}};
+
+  \node (label-align) [thick, black, align=center, rotate=90] at (-13.5, 50) {{\scriptsize Throughput (KOps)}};
+
+  \draw[thick, pattern=grid, pattern color=red] (5.26,0) rectangle (10.53,94.18);
+  \draw[thick, pattern=dots, pattern color=brown] (10.53,0) rectangle (15.79,6.64);
+  \draw[thick, pattern=crosshatch, pattern color=violet] (15.79,0) rectangle (21.05,22.00);
+  \draw[thick, pattern=north east lines, pattern color=black] (21.05,0) rectangle (26.32,37.73);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (26.32,0) rectangle (31.58,63.82);
+
+  \draw[thick, pattern=grid, pattern color=red] (36.84,0) rectangle (42.11,55.09);
+  \draw[thick, pattern=dots, pattern color=brown] (42.11,0) rectangle (47.37,1.50);
+  \draw[thick, pattern=crosshatch, pattern color=violet] (47.37,0) rectangle (52.63,11.95);
+  \draw[thick, pattern=north east lines, pattern color=black] (52.63,0) rectangle (57.89,10.68);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (57.89,0) rectangle (63.16,56.82);
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (76.32,0) rectangle (81.58,0.95);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (81.58,0) rectangle (86.84,23.45);
+
+  \draw[thick, black] (18.42, -9) node {\footnotesize{\tt{orkut}}};
+  \draw[thick, black] (50.00, -9) node {\footnotesize{\tt{twitter}}};
+  \draw[thick, black] (81.58, -9) node {\footnotesize{\tt{uk}}};
+
+\end{tikzpicture}

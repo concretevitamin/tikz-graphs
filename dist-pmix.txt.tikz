@@ -1,0 +1,23 @@
+\begin{tikzpicture}[xscale=0.0645,yscale=0.0300]
+
+  \draw[preaction={fill=black,opacity=.5,transform canvas={xshift=3,yshift=-3}},black][fill=white] (0,0) rectangle (100, 100);
+
+  \draw[dashed, gray] (-1, 25) -- (101, 25);
+  \draw[dashed, gray] (-1, 50) -- (101, 50);
+  \draw[dashed, gray] (-1, 75) -- (101, 75);
+
+  \draw[thick, black] (-5.5, 25.00) node[align=right] {\footnotesize{10}};
+  \draw[thick, black] (-5.5, 50.00) node[align=right] {\footnotesize{20}};
+  \draw[thick, black] (-5.5, 75.00) node[align=right] {\footnotesize{30}};
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (11.11,0) rectangle (22.22,22.25);
+  \draw[thick, pattern=north east lines, pattern color=black] (22.22,0) rectangle (33.33,28.25);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (33.33,0) rectangle (44.44,75.75);
+
+  \draw[thick, pattern=crosshatch, pattern color=violet] (61.11,0) rectangle (72.22,11.25);
+  \draw[thick, pattern=crosshatch dots, pattern color=cyan] (72.22,0) rectangle (83.33,42.00);
+
+  \draw[thick, black] (27.78, -9) node {\footnotesize{\tt{twitter}}};
+  \draw[thick, black] (72.22, -9) node {\footnotesize{\tt{uk}}};
+
+\end{tikzpicture}

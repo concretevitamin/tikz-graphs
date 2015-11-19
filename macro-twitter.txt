@@ -1,0 +1,3 @@
+\scriptsize{\tt{Neo4j}}  \scriptsize{\tt{Neo4j-T}} \scriptsize{\tt{Titan-C}} \scriptsize{\tt{Titan}}    \scriptsize{\tt{ZipG}}   
+\footnotesize{\tt{T-Mix}}   2.277 18.326 17.522 11.096 54.203
+\footnotesize{\tt{P-Mix}}   0.75 2.817 4.265 2.344 20.367
