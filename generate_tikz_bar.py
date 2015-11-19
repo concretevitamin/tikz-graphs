@@ -84,20 +84,24 @@ def generate_tikz(args, pattern_colors_tikz, pattern_types_tikz):
   header_tikz += '  \\draw[preaction={fill=black,opacity=.5,transform canvas={xshift=3,yshift=-3}},black][fill=white]' \
                  ' (0,0) rectangle (100, 100);\n\n'
 
-  gridlines_tikz = '  \\draw[dashed, gray] (-1, 25) -- (101, 25);\n' \
-                   '  \\draw[dashed, gray] (-1, 50) -- (101, 50);\n' \
-                   '  \\draw[dashed, gray] (-1, 75) -- (101, 75);\n\n'
-
   footer_tikz = '\\end{tikzpicture}'
 
   # Obtain the y label
   ylabel = args.ylabel
-  if ylabel is None:
-    ylabel = 'Y-Axis Label (Unit)'
-  ylabel_tikz = '  \\node (label-align) [thick, black, align=center, rotate=90] at (-12.5, 50) {%s};\n\n' % ylabel
+  if ylabel is not None:
+    ylabel_tikz = '  \\node (label-align) [thick, black, align=center, rotate=90] at (-13.5, 50) {%s};\n\n' % ylabel
+  else:
+    ylabel_tikz = ''
 
   # Get the data to plot, and validate it
   data = [map(float, split(line)[1:]) for line in file_data]
+
+  # TEMP HACK: switch bars (data AND legends)
+  # data = [(x[:0] + [x[1], x[0]] + x[2:]) for x in data]
+  # tmp = blabels[0]
+  # blabels[0] = blabels[1]
+  # blabels[1] = tmp
+
   validate_data(data, ncols)
 
   # Convert the data to logscale if requested
@@ -114,6 +118,9 @@ def generate_tikz(args, pattern_colors_tikz, pattern_types_tikz):
 
   # Generate the y-axis marks
   ymarks_tikz = ''
+  gridlines_tikz = '  \\draw[dashed, gray] (-1, 25) -- (101, 25);\n' \
+                   '  \\draw[dashed, gray] (-1, 50) -- (101, 50);\n' \
+                   '  \\draw[dashed, gray] (-1, 75) -- (101, 75);\n\n'
   if args.logscale:
     gridlines_tikz = ''
     step = 100 / (ymax - ymin)
@@ -121,12 +128,15 @@ def generate_tikz(args, pattern_colors_tikz, pattern_types_tikz):
       ymark = pow(10, power)
       mark = (power - ymin) * step
       gridlines_tikz += '  \\draw[dashed, gray] (-1, %.2f) -- (101, %.2f);\n' % (mark, mark)
-      ymarks_tikz += '  \\draw[thick, black] (-4.2, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
+      ymarks_tikz += '  \\draw[thick, black] (-5.75, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
     gridlines_tikz += '\n'
   else:
-    for mark in [25.0, 50.0, 75.0]:
+    marks = [20, 40, 60]
+    marks = [25., 50., 75.]
+    percs = [m * 100. / (ymax - ymin) for m in marks]
+    for mark,perc in zip(marks, percs):
       ymark = float(ymin + (mark * (ymax - ymin) / 100.0))
-      ymarks_tikz += '  \\draw[thick, black] (-4.2, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
+      ymarks_tikz += '  \\draw[thick, black] (-5.5, %.2f) node[align=right] {\\footnotesize{%s}};\n' % (mark, intify(ymark))
 
   ymarks_tikz += '\n'
 
@@ -144,17 +154,19 @@ def generate_tikz(args, pattern_colors_tikz, pattern_types_tikz):
 
     # redistribute missing bars' width to others
     numMissingBars = sum([1 for col in row if col == 0])
-    cur_bar_off += width * numMissingBars / (len(row) - numMissingBars)
+    cur_bar_off += width * (numMissingBars ) / (len(row) - numMissingBars)
 
     for col in row:
       pattern = pattern_iter.next()
-      if col == 0:
+      if col == 0: # hacky: this means missing bar
         continue
+      print cur_bar_off,
       bar_grp_tikz += '  \draw[thick, pattern=%s, pattern color=%s] (%.2f,0) rectangle (%.2f,%.2f);\n' % \
                       (pattern[0], pattern[1], cur_bar_off, cur_bar_off + width, col)
       cur_bar_off += width
     plot_data_tikz += (bar_grp_tikz + '\n')
     cur_bar_off += width
+    print
 
   # Generate x-axis labels
   xlabels = [split(line)[0] for line in file_data]
@@ -166,16 +178,49 @@ def generate_tikz(args, pattern_colors_tikz, pattern_types_tikz):
   xlabels_tikz += '\n'
 
   # Generate bar label legend
-  blabel_dist = 100.0 / ncols
-  blabel_offsets = [x * blabel_dist for x in range(0, len(blabels))]
+  compute_offsets = lambda ncols: [x * (100. / ncols) - (2.6 if x > 0 else 0) for x in range(0, ncols)]
+  blabel_offsets = compute_offsets(ncols)
   blabels_tikz = ''
   pattern_iter = iter(patterns_tikz)
+  one_row = (ncols <= 3)
+
+  if not one_row:
+    cols = ncols / 2 + 1 if ncols % 2 == 0 else ncols # huge hack
+    upper_row_ncols = ncols / 2 + ncols % 2
+    upper_blabel_offsets = compute_offsets(cols)
+    upper_blabel_offsets = compute_offsets(ncols)
+    upper_blabel_offsets = compute_offsets(ncols / 2 + ncols % 2)
+
+    lower_row_ncols = ncols / 2
+    lower_blabel_offsets = compute_offsets(cols)
+    lower_blabel_offsets = compute_offsets(lower_row_ncols)
+    lower_blabel_offsets = compute_offsets(ncols)
+    lower_blabel_offsets = compute_offsets(ncols / 2)
+
+  i = 0
+  node_rectangle_width = 4.75
   for blabel in zip(blabel_offsets, blabels):
     pattern = pattern_iter.next()
     draw_opts = 'thick, pattern=%s, pattern color=%s' % pattern
-    node_opts = 'midway,right=0.2,text height=5,text depth=0.1, anchor=west'
-    blabels_tikz += '  \draw[%s] (%.2f, 102.5) rectangle (%.2f, 107.5) node[%s] {%s};\n' \
-                    % (draw_opts, blabel[0], blabel[0] + 5, node_opts, blabel[1])
+    node_opts = 'midway,right=0.05,text height=6,text depth=0.1, anchor=west'
+
+    if one_row:
+      blabels_tikz += '  \draw[%s] (%.2f, 103.5) rectangle (%.2f, 109.5) node[%s] {%s};\n' \
+                      % (draw_opts, blabel[0], blabel[0] + node_rectangle_width, node_opts, blabel[1])
+    elif i % 2 == 0:
+      # if overflow, upper row
+      blabels_tikz += '  \draw[%s] (%.2f, 114.5) rectangle (%.2f, 120.5) node[%s] {%s};\n' \
+                      % (draw_opts,
+                          upper_blabel_offsets[i / 2],
+                          upper_blabel_offsets[i / 2] + node_rectangle_width,
+                          node_opts, blabel[1])
+    elif i % 2 == 1:
+      blabels_tikz += '  \draw[%s] (%.2f, 103.5) rectangle (%.2f, 109.5) node[%s] {%s};\n' \
+                      % (draw_opts,
+                          lower_blabel_offsets[i / 2],
+                          lower_blabel_offsets[i / 2] + node_rectangle_width,
+                          node_opts, blabel[1])
+    i += 1
 
   blabels_tikz += '\n'
 
