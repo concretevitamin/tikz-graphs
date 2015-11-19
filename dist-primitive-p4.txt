@@ -1,3 +1,3 @@
-\scriptsize{\tt{Titan-C}} \scriptsize{\tt{Titan}}    \scriptsize{\tt{ZipG}}  
-\footnotesize{\tt{twitter}}  39.1 39.8  246.6
-\footnotesize{\tt{uk}}   16.6   0   168.2
+\scriptsize{\tt{Titan}} \scriptsize{\tt{Titan-C}}    \scriptsize{\tt{ZipG}}  
+\footnotesize{\tt{twitter}}  39.8	39.1  246.6
+\footnotesize{\tt{uk}}   0	16.6	168.2

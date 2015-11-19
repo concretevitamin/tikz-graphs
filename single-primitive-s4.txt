@@ -1,4 +1,4 @@
-\scriptsize{\tt{Neo4j}}  \scriptsize{\tt{Neo4j-T}} \scriptsize{\tt{Titan-C}} \scriptsize{\tt{Titan}}    \scriptsize{\tt{ZipG}}     
-\footnotesize{\tt{orkut}}   14.6    207.2   48.4    83  140.4 
-\footnotesize{\tt{twitter}}  3.3    121.2   26.3    23.5    125
-\footnotesize{\tt{uk}}   0  0   2.1  0   51.6 
+\scriptsize{\tt{Neo4j}}  \scriptsize{\tt{Neo4j-T}} \scriptsize{\tt{Titan}} \scriptsize{\tt{Titan-C}}    \scriptsize{\tt{ZipG}}     
+\footnotesize{\tt{orkut}}   14.6    207.2     83	48.4  140.4 
+\footnotesize{\tt{twitter}}  3.3    121.2   23.5	26.3    125
+\footnotesize{\tt{uk}}   0  0   0		2.1   51.6 
